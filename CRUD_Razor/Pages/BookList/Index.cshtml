@@ -5,6 +5,7 @@
 
 <h1>Book List</h1>
 
+<!-- Display Messagebox -->
 @if (Model.Message != null)
 {
     <div class="alert alert-info alert-dismissable" role="alert">
@@ -34,10 +35,7 @@
                     @Html.DisplayNameFor(m => m.Books.FirstOrDefault().Isbn)
                 </th>
                 <th>
-
-                </th>
-                <th>
-
+                    Action
                 </th>
             </tr>
             <!-- Book Data -->

@@ -42,9 +42,7 @@ namespace CRUD_Razor.Pages.BookList
 
 				return RedirectToPage("Index");
 			}
-
 			return RedirectToPage();
-			
 		}
     }
 }
