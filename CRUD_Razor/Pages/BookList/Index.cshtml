@@ -3,18 +3,46 @@
 @{
 }
 
-<br />
-<h2>Book List</h2>
-<br />
+<h1>Book List</h1>
 
 <a asp-page="Create" class="btn btn-primary">Create New Book</a>
 
 <!-- Check if Books are in Database -->
 @if (Model.Books.Count() > 0)
 {
-    <div>Books Available!</div>
+    <table class="table">
+        <!-- Header -->
+        <tr>
+            <th>
+                @Html.DisplayNameFor(m => m.Books.FirstOrDefault().Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Books.FirstOrDefault().Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Books.FirstOrDefault().Isbn)
+            </th>
+        </tr>
+        <!-- Book Data -->
+        @foreach (var item in Model.Books)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Isbn)
+                </td>
+            </tr>
+        }
+    </table>
+    <br /><br />
 }
+
 else
 {
-    <div>No Books in Databse</div>
+    <div> No Books in Databse </div>
 }
