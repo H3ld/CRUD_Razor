@@ -10,16 +10,18 @@ namespace CRUD_Razor.Pages.BookList
 {
     public class CreateModel : PageModel
     {
-
 		private readonly ApplicationDbContext _db;
+
+		[TempData]
+		public string Message { get; set; }
+
+		[BindProperty]
+		public Book Book { get; set; }
 
 		public CreateModel(ApplicationDbContext db) 
 		{
 			_db = db;
 		}
-
-		[BindProperty]
-		public Book Book { get; set; }
 
 		public void OnGet()
         {
@@ -38,6 +40,9 @@ namespace CRUD_Razor.Pages.BookList
 
 			// Saving Changes in Context to Database asynchronosly
 			await _db.SaveChangesAsync();
+
+			// Message
+			Message = "Book has been created successfully";
 
 			// Redirecting IndexPage
 			return RedirectToPage("Index");
