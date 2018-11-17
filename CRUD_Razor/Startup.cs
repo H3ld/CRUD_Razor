@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using CRUD_Razor.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace CRUD_Razor
 {
@@ -31,7 +33,8 @@ namespace CRUD_Razor
 				options.MinimumSameSitePolicy = SameSiteMode.None;
 			});
 
-
+			// Db Context
+			services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 		}
 
@@ -47,7 +50,8 @@ namespace CRUD_Razor
 				app.UseExceptionHandler("/Error");
 				app.UseHsts();
 			}
-
+			
+			// Add Middleware here
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
 			app.UseCookiePolicy();
